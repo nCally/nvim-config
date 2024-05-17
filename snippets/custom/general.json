@@ -1,0 +1,15 @@
+{
+  "Create controller": {
+    "scope": "javascript,typescript",
+    "prefix": "ctl",
+    "body": [
+      "import { Request, Response } from 'express';",
+      "\n",
+      "const $1 = ControllerShield(async(req: Request, res: Response) => {});",
+      "\n",
+      "export default $1;",
+      "$0"
+    ],
+    "description": "quickly bootstrap controller"
+  }
+}
