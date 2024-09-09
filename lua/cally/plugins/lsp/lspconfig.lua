@@ -4,6 +4,8 @@ if not lspconfig_status then
 	return
 end
 
+local configs = require 'lspconfig.configs'
+
 -- import cmp-nvim-lsp plugin safely
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
@@ -41,7 +43,7 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>tm", "<cmd>Lspsaga term_toggle<CR>", opts) -- open up the terminal
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
-	if client.name == "tsserver" then
+	if client.name == "ts_ls" then
 		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
 		keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
 		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
@@ -91,6 +93,17 @@ lspconfig["emmet_ls"].setup({
 	on_attach = on_attach,
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
+
+configs.solidity = {
+  default_config = {
+    cmd = {'nomicfoundation-solidity-language-server', '--stdio'},
+    filetypes = { 'solidity' },
+    root_dir = lspconfig.util.find_git_ancestor,
+    single_file_support = true,
+  },
+}
+-- lspconfig.solidity.setup {}
+
 
 -- configure lua server (with special settings)
 -- lspconfig["lua_ls"].setup({

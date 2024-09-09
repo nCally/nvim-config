@@ -33,6 +33,6 @@ keymap.set("n", "<leader>fc", "<cmd>lua require'telescope.builtin'.grep_string()
 keymap.set("n", "<leader>fb", "<cmd>lua require'telescope.builtin'.buffers()<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>lua require'telescope.builtin'.help_tags()<cr>") -- list available help tags
 
-vim.g.NERDTreeQuitOnOpen = 1
+vim.g.NERDTreeQuitOnOpen = 0;
 
 keymap.set("n", "<leader><leader>", "<cmd>Centerpad 20<cr>") -- center current buffer

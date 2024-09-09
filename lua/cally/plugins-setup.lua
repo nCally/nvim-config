@@ -41,6 +41,7 @@ return packer.startup(function(use)
 	use("sainnhe/everforest")
 	use("folke/tokyonight.nvim")
 	use("NLKNguyen/papercolor-theme")
+	use("savq/melange-nvim")
 
 	-- css coloring
 	use("norcalli/nvim-colorizer.lua")
@@ -51,6 +52,11 @@ return packer.startup(function(use)
 	use("numToStr/Comment.nvim")
 
 	use("nvim-tree/nvim-tree.lua")
+
+	use("dart-lang/dart-vim-plugin")
+	use("thosakwe/vim-flutter")
+	use("natebosch/vim-lsc")
+	use("natebosch/vim-lsc-dart")
 
 	use("kyazdani42/nvim-web-devicons")
 
@@ -80,6 +86,8 @@ return packer.startup(function(use)
 
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("jayp0521/mason-null-ls.nvim")
+
+	use("lukas-reineke/indent-blankline.nvim")
 
 	-- treesitter configuration
 	use({

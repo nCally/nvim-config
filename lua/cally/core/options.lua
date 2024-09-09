@@ -18,7 +18,8 @@ opt.scrolloff = 10
 opt.cursorline = true
 
 opt.termguicolors = true
-opt.background = "light"
+opt.background = "dark"
+-- opt.background = "light"
 opt.signcolumn = "yes"
 
 opt.clipboard:append("unnamedplus")
@@ -28,6 +29,6 @@ opt.splitbelow = true
 
 opt.iskeyword:append("-")
 
-opt.foldmethod = "expr"
+opt.foldmethod = "syntax"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldenable = false
