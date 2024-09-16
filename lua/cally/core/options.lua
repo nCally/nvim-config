@@ -18,8 +18,8 @@ opt.scrolloff = 10
 opt.cursorline = true
 
 opt.termguicolors = true
-opt.background = "dark"
--- opt.background = "light"
+-- opt.background = "dark"
+opt.background = "light"
 opt.signcolumn = "yes"
 
 opt.clipboard:append("unnamedplus")
