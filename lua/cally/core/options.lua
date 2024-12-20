@@ -3,6 +3,10 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+opt.guifont = Hack
+
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
@@ -20,7 +24,7 @@ opt.cursorline = true
 opt.termguicolors = true
 -- opt.background = "dark"
 opt.background = "light"
-opt.signcolumn = "yes"
+-- opt.signcolumn = "yes"
 
 opt.clipboard:append("unnamedplus")
 

@@ -34,14 +34,13 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim")
 
 	-- center buffer
-	use("smithbm2316/centerpad.nvim");
+	use("smithbm2316/centerpad.nvim")
 
 	-- preferred colorscheme
 	use("morhetz/gruvbox")
 	use("sainnhe/everforest")
 	use("folke/tokyonight.nvim")
 	use("NLKNguyen/papercolor-theme")
-	use("savq/melange-nvim")
 
 	-- css coloring
 	use("norcalli/nvim-colorizer.lua")
@@ -51,14 +50,13 @@ return packer.startup(function(use)
 
 	use("numToStr/Comment.nvim")
 
-	use("nvim-tree/nvim-tree.lua")
+	use("kyazdani42/nvim-web-devicons")
+	use({ "nvim-tree/nvim-tree.lua", tag = "v1.7.1" })
 
 	use("dart-lang/dart-vim-plugin")
 	use("thosakwe/vim-flutter")
 	use("natebosch/vim-lsc")
 	use("natebosch/vim-lsc-dart")
-
-	use("kyazdani42/nvim-web-devicons")
 
 	use("nvim-lualine/lualine.nvim")
 
@@ -71,12 +69,13 @@ return packer.startup(function(use)
 
 	use("saadparwaiz1/cmp_luasnip")
 	use("rafamadriz/friendly-snippets")
-	use({"L3MON4D3/LuaSnip", dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" }})
+	use({ "L3MON4D3/LuaSnip", dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" } })
 
 	-- configuring lsp servers
 	use("neovim/nvim-lspconfig")
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
+	use({ "creativenull/efmls-configs-nvim", version = "v1.x.x", dependencies = { "neovim/nvim-lspconfig" } })
 
 	use("hrsh7th/cmp-nvim-lsp")
 	-- use({ "glepnir/lspsaga.nvim", branch = "main" })
@@ -93,7 +92,8 @@ return packer.startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
-			require("nvim-treesitter.install").update({ with_sync = true })
+			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+			ts_update()
 		end,
 	})
 
@@ -104,8 +104,7 @@ return packer.startup(function(use)
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
-	-- HTML live server
-	use("wolandark/vim-live-server")
+	use("ryanoasis/vim-devicons")
 
 	if packer_bootstrap then
 		require("packer").sync()

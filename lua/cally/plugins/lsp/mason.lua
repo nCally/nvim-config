@@ -22,6 +22,7 @@ mason.setup({
 
 mason_lspconfig.setup({
 	ensure_installed = {
+    "solidity_ls",
 		"ts_ls",
 		"html",
 		"cssls",

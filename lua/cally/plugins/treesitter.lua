@@ -33,6 +33,10 @@ treesitter.setup({
 		"vim",
 		"dockerfile",
 		"gitignore",
+		"solidity",
+		"sql",
+		"make",
+		"ssh_config"
 	},
 	-- auto install above language parsers
 	auto_install = true,

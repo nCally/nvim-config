@@ -19,4 +19,7 @@ saga.setup({
 			edit = "<CR>",
 		}
 	},
+	lightbulb = {
+		enable = false
+	}
 })

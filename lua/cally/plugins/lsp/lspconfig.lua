@@ -4,17 +4,11 @@ if not lspconfig_status then
 	return
 end
 
-local configs = require 'lspconfig.configs'
+-- local configs = require 'lspconfig.configs'
 
 -- import cmp-nvim-lsp plugin safely
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
-	return
-end
-
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
 	return
 end
 
@@ -68,11 +62,9 @@ lspconfig["html"].setup({
 })
 
 -- configure typescript server with plugin
-typescript.setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	},
+lspconfig["ts_ls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
 
 -- configure css server
@@ -91,37 +83,60 @@ lspconfig["tailwindcss"].setup({
 lspconfig["emmet_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+	filetypes = { "html", "javascript", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
 
-configs.solidity = {
-  default_config = {
-    cmd = {'nomicfoundation-solidity-language-server', '--stdio'},
-    filetypes = { 'solidity' },
-    root_dir = lspconfig.util.find_git_ancestor,
-    single_file_support = true,
-  },
-}
--- lspconfig.solidity.setup {}
-
+lspconfig.solidity_ls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "solidity" },
+	single_file_support = true,
+	-- root_dir = lspconfig.util.root_pattern("hardhat.config.*", ".git")
+})
 
 -- configure lua server (with special settings)
--- lspconfig["lua_ls"].setup({
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- 	settings = { -- custom settings for lua
--- 		Lua = {
--- 			-- make the language server recognize "vim" global
--- 			diagnostics = {
--- 				globals = { "vim" },
--- 			},
--- 			workspace = {
--- 				-- make language server aware of runtime files
--- 				library = {
--- 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
--- 					[vim.fn.stdpath("config") .. "/lua"] = true,
--- 				},
--- 			},
--- 		},
--- 	},
--- })
+lspconfig.lua_ls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = { -- custom settings for lua
+		Lua = {
+			-- make the language server recognize "vim" global
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				-- make language server aware of runtime files
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.stdpath("config") .. "/lua"] = true,
+				},
+			},
+		},
+	},
+})
+
+local solhint = require("efmls-configs.linters.solhint")
+local prettier = require("efmls-configs.formatters.prettier")
+local stylelua = require("efmls-configs.formatters.stylua")
+local luacheck = require("efmls-configs.linters.luacheck")
+
+local languages = {
+	solidity = { solhint, prettier },
+	lua = { luacheck, stylelua },
+}
+
+lspconfig.efm.setup({
+	filetypes = vim.tbl_keys(languages),
+	init_options = {
+		documentFormatting = true,
+		documentRangeFormatting = true,
+		hover = true,
+		documentSymbol = true,
+		codeAction = true,
+		completion = true,
+	},
+	settings = {
+		rootMarkers = { ".git/" },
+		languages = languages,
+	},
+})
