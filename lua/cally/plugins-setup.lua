@@ -75,18 +75,13 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
-	use({ "creativenull/efmls-configs-nvim", version = "v1.x.x", dependencies = { "neovim/nvim-lspconfig" } })
+	use({
+		"creativenull/efmls-configs-nvim",
+		version = "v1.x.x",
+		dependencies = { "neovim/nvim-lspconfig" },
+	})
 
 	use("hrsh7th/cmp-nvim-lsp")
-	-- use({ "glepnir/lspsaga.nvim", branch = "main" })
-	use({ "nvimdev/lspsaga.nvim" })
-	use("jose-elias-alvarez/typescript.nvim")
-	use("onsails/lspkind.nvim")
-
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("jayp0521/mason-null-ls.nvim")
-
-	use("lukas-reineke/indent-blankline.nvim")
 
 	-- treesitter configuration
 	use({
@@ -96,6 +91,26 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	})
+
+	-- use({ "glepnir/lspsaga.nvim", branch = "main" })
+	-- use({
+	-- 	"nvimdev/lspsaga.nvim",
+	-- 	after = "nvim-lspconfig",
+	-- 	dependencies = {
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 		"kyazdani42/nvim-web-devicons",
+	-- 	},
+	-- 	config = function()
+	-- 		require("lspsaga").setup({})
+	-- 	end,
+	-- })
+	use("jose-elias-alvarez/typescript.nvim")
+	use("onsails/lspkind.nvim")
+
+	use("jose-elias-alvarez/null-ls.nvim")
+	use("jayp0521/mason-null-ls.nvim")
+
+	use("lukas-reineke/indent-blankline.nvim")
 
 	-- auto closing
 	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
